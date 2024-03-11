@@ -11,24 +11,29 @@ public class Main {
         int km;
         System.out.println("inserisci il numero di litri consumati: ");
         litri = sc.nextInt();
-        System.out.println("inserisci il numero di km percorsi: ");
-        km = sc.nextInt();
+
 
         try {
             if (litri == 0) {
                 throw new InvalidLiterFuel(litri);
+
             }
+            System.out.println("inserisci il numero di km percorsi: ");
+            km = sc.nextInt();
 
         } catch (
-                InvalidLiterFuel ignored) {
+                InvalidLiterFuel e) {
+            System.out.println("errore calcolo dei litri consumati: " + e.getMessage());
+            return;
         } finally {
             sc.close();
         }
         int litriXKm = litriXKm(litri, km);
         System.out.println("il numero di litri consumati per km è: " + litriXKm);
+
     }
 
     public static int litriXKm(int litri, int km) {
-        return litri / km;
+        return km / litri;
     }
 }
